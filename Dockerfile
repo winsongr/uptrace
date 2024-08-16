@@ -22,7 +22,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Download and install Uptrace (update URL if needed)
-RUN wget -O uptrace https://github.com/uptrace/uptrace/releases/download/v1.7.6/uptrace-linux-amd64 && \
+RUN wget -O uptrace https://github.com/uptrace/uptrace/releases/download/v1.7.6/uptrace_linux_amd64 && \
     chmod +x uptrace && \
     mv uptrace /usr/local/bin/
 
