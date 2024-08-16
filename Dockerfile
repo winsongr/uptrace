@@ -51,3 +51,4 @@ CMD service postgresql start && \
     service clickhouse-server start && \
     uptrace migrate && \
     uptrace serve
+    
