@@ -21,8 +21,8 @@ RUN apt-get update && \
     apt-get install -y clickhouse-server clickhouse-client && \
     rm -rf /var/lib/apt/lists/*
 
-# Download and install Uptrace
-RUN wget -O uptrace https://github.com/uptrace/uptrace/releases/latest/download/uptrace-linux-amd64 && \
+# Download and install Uptrace (update URL if needed)
+RUN wget -O uptrace https://github.com/uptrace/uptrace/releases/download/v1.7.6/uptrace-linux-amd64 && \
     chmod +x uptrace && \
     mv uptrace /usr/local/bin/
 
