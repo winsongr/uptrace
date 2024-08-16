@@ -4,12 +4,13 @@ FROM ubuntu:22.04
 # Avoid prompts from apt
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install necessary dependencies
+# Install necessary dependencies including sudo
 RUN apt-get update && apt-get install -y \
     wget \
     gnupg2 \
     lsb-release \
     postgresql \
+    sudo \
     && rm -rf /var/lib/apt/lists/*
 
 # Add ClickHouse repository and install ClickHouse
@@ -21,8 +22,8 @@ RUN apt-get update && \
     apt-get install -y clickhouse-server clickhouse-client && \
     rm -rf /var/lib/apt/lists/*
 
-# Download and install Uptrace (update URL if needed)
-RUN wget -O uptrace https://github.com/uptrace/uptrace/releases/download/v1.7.6/uptrace_linux_amd64 && \
+# Download and install Uptrace (verify the URL and command)
+RUN wget -O uptrace https://github.com/uptrace/uptrace/releases/download/v1.7.7/uptrace-linux-amd64 && \
     chmod +x uptrace && \
     mv uptrace /usr/local/bin/
 
@@ -46,9 +47,7 @@ projects:\n\
 # Expose necessary ports
 EXPOSE 5432 8080 8123 9000 14317
 
-# Start PostgreSQL, ClickHouse, and Uptrace
+# Start PostgreSQL, ClickHouse, and Uptrace (adjust the Uptrace command)
 CMD service postgresql start && \
     service clickhouse-server start && \
-    uptrace migrate && \
     uptrace serve
-    
